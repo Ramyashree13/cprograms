@@ -20,7 +20,7 @@ void input(int n,struct rectangle a[n])
 void compute(int n,struct rectangle a[n])
 {
 
-	int len1[n],len2[n],len3[n],len4[n],p1[n],p2[n];
+	int len1[n],len2[n],len3[n],len4[n],p1[n],p2[n],area[n];
 	for(int i=0;i<n;i++)
 		len1[i]= (a[i].x2) - (a[i].x1);
 	for(int i=0;i<n;i++)
@@ -34,10 +34,10 @@ void compute(int n,struct rectangle a[n])
 		p1[i]=sqrt((len1[i] * len1[i]) + (len3[i] * len3[i]));
 	for(i=0;i<n;i++)
 		p2[i]=sqrt((len2[i] * len2[i]) + (len4[i] * len4[i]));
-
-
-
-
+	for(int i=0;i<n;i++)
+		area[i]= p1[i] *p2[i];
+	for(i=0;i<n;i++)
+		printf("%f",area[i]);
 }
 int main()
 {
@@ -46,6 +46,7 @@ int main()
 	scanf("%d",&n);
 	struct rectangle a[n];
 	input(n,a);
+	compute(n,a);
 	return 0;
 }
 
