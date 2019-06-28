@@ -1,30 +1,28 @@
 #include<stdio.h>
 #include<math.h>
-struct coordinates
+struct point
 {
-	float x1;
-	float y1;
-	float x2;
-	float y2;
-	float x3;
-	float y3;
+	float x;
+	float y;
 };
 struct rectangle
 {
 	float point1;
 	float point2;
 	float point3;
-	struct coordinates p;
+	struct point p[6];
 };
 void input(int n,struct rectangle a[n])
 {
 	printf("enter the coordinates of rectangles\n");
 	for(int i=0;i<n;i++)
-		scanf("%f%f%f%f%f%f",&a[i].p.x1,&a[i].p.y1,&a[i].p.x2,&a[i].p.y2,&a[i].p.x3,&a[i].p.y3);
+		for(int j=0;j<6;j++)
+		scanf("%f%f%f%f%f%f",&a[i].p[j].x,&a[i].p[j].y);
 	for(int i=0;i<n;i++)
-		printf("%f\n%f\n%f\n%f\n%f\n%f\n",a[i].p.x1,a[i].p.y1,a[i].p.x2,a[i].p.y2,a[i].p.x3,a[i].p.y3);
+		for(j=0'j<6;j++)
+		printf("%f\n%f\n%f\n%f\n%f\n%f\n",a[i].p[j].x,a[i].p[j].y);
 }
-void compute(int n,struct rectangle a[n],float *res)
+/*void compute(int n,struct rectangle a[n],float *res)
 {
 
 	float len1[n],len2[n],len3[n],len4[n],p1[n],p2[n];
@@ -53,18 +51,18 @@ void output(int n,float area[])
 	for(int i=0;i<n;i++)
 		printf("%f\n",area[i]);
 
-}
+}*/
 int main()
 {
 	int n;
 	printf("enter the number of rectangles you need to claculate the area\n");
 	scanf("%d",&n);
 	struct rectangle a[n];
-	float area[n],*res;
-	res=area;
+/*	float area[n],*res;
+	res=area;*/
 	input(n,a);
-	compute(n,a,res);
-	output(n,area);
+//	compute(n,a,res);
+//	output(n,area);
 	return 0;
 }
 
