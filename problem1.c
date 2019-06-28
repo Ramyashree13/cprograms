@@ -7,10 +7,7 @@ struct point
 };
 struct rectangle
 {
-	float point1;
-	float point2;
-	float point3;
-	struct point p[6];
+	struct point p[3];
 };
 void input(int n,struct rectangle a[n])
 {
@@ -30,20 +27,20 @@ void input(int n,struct rectangle a[n])
 		}
 	}
 }
-/*void compute(int n,struct rectangle a[n],float *res)
+void compute(int n,struct rectangle a[n],float *res)
 {
 
 	float len1[n],len2[n],len3[n],len4[n],p1[n],p2[n];
 
 	for(int i=0;i<n;i++)
-		len1[i]= (a[i].p.x2) - (a[i].p.x1);
+		len1[i]= (a[i].p[2].x) - (a[i].p[1].x);
 	for(int i=0;i<n;i++)
-		len2[i]= (a[i].p.x3) - (a[i].p.x2);
+		len2[i]= (a[i].p[3].x) - (a[i].p[2].x);
 	
 	for(int i=0;i<n;i++)
-		len3[i]=(a[i].p.y2) - (a[i].p.y1);
+		len3[i]=(a[i].p[2].y) - (a[i].p[1].y);
 	for(int i=0;i<n;i++)
-		len4[i]=(a[i].p.y3) - (a[i].p.y2);
+		len4[i]=(a[i].p[3].y) - (a[i].p[2].y);
 	for(int i=0;i<n;i++)
 		p1[i]=sqrt((len1[i] * len1[i]) + (len3[i] * len3[i]));
 	for(int i=0;i<n;i++)
@@ -59,18 +56,18 @@ void output(int n,float area[])
 	for(int i=0;i<n;i++)
 		printf("%f\n",area[i]);
 
-}*/
+}
 int main()
 {
 	int n;
 	printf("enter the number of rectangles you need to claculate the area\n");
 	scanf("%d",&n);
-	struct rectangle a[n];
-/*	float area[n],*res;
-	res=area;*/
-	input(n,a);
-//	compute(n,a,res);
-//	output(n,area);
+	struct rectangle rect[n];
+	float area[n],*res;
+	res=area;
+	input(n,rect);
+	compute(n,rect,res);
+	output(n,area);
 	return 0;
 }
 
