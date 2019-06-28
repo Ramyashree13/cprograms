@@ -16,11 +16,19 @@ void input(int n,struct rectangle a[n])
 {
 	printf("enter the coordinates of rectangles\n");
 	for(int i=0;i<n;i++)
-		for(int j=0;j<6;j++)
-		scanf("%f%f%f%f%f%f",&a[i].p[j].x,&a[i].p[j].y);
+	{
+		for(int j=1;j<=3;j++)
+		{
+			scanf("%f%f",&a[i].p[j].x,&a[i].p[j].y);
+		}
+	}
 	for(int i=0;i<n;i++)
-		for(j=0'j<6;j++)
-		printf("%f\n%f\n%f\n%f\n%f\n%f\n",a[i].p[j].x,a[i].p[j].y);
+	{	
+		for(int j=1;j<=3;j++)
+		{
+			printf("%f\n%f\n",a[i].p[j].x,a[i].p[j].y);
+		}
+	}
 }
 /*void compute(int n,struct rectangle a[n],float *res)
 {
