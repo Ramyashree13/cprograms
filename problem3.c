@@ -2,21 +2,19 @@
 struct str
 {
 	int len;
-	char s[len];
+	char s[10];
 };
-void input(int n,char s[],int len[])
+void input(int n,struct str string1[n])
 {
 	int i,j;
 	for(i=0;i<n;i++)
 	{
-		printf("enter the length of the string");
-		scanf("%d",&len[i]);
-		s[len[i]];
-		scanf("%s",s);
+		printf("enter the length of string\n");
+		scanf("%d",&string1[i].len);
+		printf("enter the string\n");
+		scanf("%s",string1[i].s);
+		printf("%s",string1[i].s);
 	}
-	printf("strings\n");
-	for(i=0;i<n;i++)
-		printf("%s",s[i]);
 }
 	
 int main()
@@ -24,13 +22,8 @@ int main()
 	int n,i;
 	printf("enter the number of strings\n");
 	scanf("%d",&n);
-	char str[10];
-	int len[n];
-	//s=str;
-	input(n,str,len);
-/*	printf("strings\n");
-	for(i=0;i<n;i++)
-		printf("%s",s);*/
+	struct str string1[n];
+	input(n,string1);
 	return 0;
 }
 
