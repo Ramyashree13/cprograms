@@ -1,4 +1,9 @@
 #include<stdio.h>
+struct str
+{
+	int len;
+	char s[len];
+};
 void input(int n,char s[],int len[])
 {
 	int i,j;
