@@ -15,6 +15,10 @@ void input(int n,struct str string1[n])
 		scanf("%s",string1[i].s);
 	}
 }
+void compute()
+{
+
+}
 	
 int main()
 {
@@ -23,8 +27,6 @@ int main()
 	scanf("%d",&n);
 	struct str string1[n];
 	input(n,string1);
-	for(i=0;i<n;i++)
-		printf("%s",string1[i].s);
 	return 0;
 }
 
