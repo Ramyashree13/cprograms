@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<math.h>
-int smallest(float len1,float len2,float len3,float *smallest1,float *smallest2);
+void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2);
+void area(int n,struct rectangle a[n]);
 struct point
 {
 	float x;
@@ -8,6 +9,7 @@ struct point
 };
 struct rectangle
 {
+	float len[3];
 	struct point p[3];
 };
 void input(int n,struct rectangle a[n])
@@ -20,22 +22,15 @@ void input(int n,struct rectangle a[n])
 			scanf("%f%f",&a[i].p[j].x,&a[i].p[j].y);
 		}
 	}
-/*	for(int i=0;i<n;i++)
-	{	
-		for(int j=1;j<=3;j++)
-		{
-			printf("%f\n%f\n",a[i].p[j].x,a[i].p[j].y);
-		}
-	}*/
 }
 void compute(int n,struct rectangle a[n],float *res)
 {
 
-	float len1,len2,len3,p1,p2,p3,p4,p5,p6;
+	float len1,len2,len3;
 	float smallest1=0,smallest2=0;
 	for(int i=0;i<n;i++)
 	{
-		p1= (a[i].p[2].x) - (a[i].p[1].x);
+		/*p1= (a[i].p[2].x) - (a[i].p[1].x);
 		p2= (a[i].p[3].x) - (a[i].p[2].x);
 		p3= (a[i].p[3].x) - (a[i].p[1].x);
 		p4=(a[i].p[2].y)  - (a[i].p[1].y);
@@ -43,31 +38,45 @@ void compute(int n,struct rectangle a[n],float *res)
 		p6=(a[i].p[3].y) - (a[i].p[1].y);
 		len1=sqrt((p1 * p1) + (p4 * p4));
 		len2=sqrt((p2 * p2) + (p5 * p5));
-		len3=sqrt((p3 * p3) + (p6 * p6));
+		len3=sqrt((p3 * p3) + (p6 * p6));*/
+		area(a);
 	       	smallest(len1,len2,len3,&smallest1,&smallest2);
 		res[i] = (smallest1) * (smallest2);
 	}
 
 }
-int smallest(float len1,float len2,float len3,float *smallest1,float *smallest2)
+void distance(struct rectangle a[])
+{
+
+		int i;
+		float *len1,*len2,*len3,p1,p2,p3,p4,p5,p6;
+		p1= (a[i].p[2].x) - (a[i].p[1].x);
+		p2= (a[i].p[3].x) - (a[i].p[2].x);
+		p3= (a[i].p[3].x) - (a[i].p[1].x);
+		p4=(a[i].p[2].y)  - (a[i].p[1].y);
+		p5=(a[i].p[3].y) - (a[i].p[2].y);
+		p6=(a[i].p[3].y) - (a[i].p[1].y);
+		*len1=sqrt((p1 * p1) + (p4 * p4));
+		*len2=sqrt((p2 * p2) + (p5 * p5));
+		*len3=sqrt((p3 * p3) + (p6 * p6));
+
+}
+void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2)
 {
 	if(len1>len2 && len1>len3)
 	{
 		*smallest1=len2;
 		*smallest2=len3;
-		return 0;
 	}
 	else if(len2>len1 && len2>len3)
 	{
 		*smallest1=len1;
 		*smallest2=len3;
-		return 0;
 	}
 	else 
 	{
 		*smallest1=len1;
 		*smallest2=len2;
-		return 0;
 	}
 	
 }

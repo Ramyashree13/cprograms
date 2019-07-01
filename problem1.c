@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2);
+void distance(int n,struct rectangle a[n]);
 struct point
 {
 	float x;
@@ -8,6 +9,8 @@ struct point
 };
 struct rectangle
 {
+	float dis[6];
+	float len[3];
 	struct point p[3];
 };
 void input(int n,struct rectangle a[n])
@@ -24,24 +27,41 @@ void input(int n,struct rectangle a[n])
 void compute(int n,struct rectangle a[n],float *res)
 {
 
-	float len1,len2,len3,p1,p2,p3,p4,p5,p6;
-	float *smallest1=0,*smallest2=0;
-	for(int i=0;i<n;i++)
+	int i,j;
+	float smallest1=0,smallest2=0;
+	distance(n,a.dis,a.p);
+	for(i=0;i<n;i++)
 	{
-		p1= (a[i].p[2].x) - (a[i].p[1].x);
-		p2= (a[i].p[3].x) - (a[i].p[2].x);
-		p3= (a[i].p[3].x) - (a[i].p[1].x);
-		p4=(a[i].p[2].y)  - (a[i].p[1].y);
-		p5=(a[i].p[3].y) - (a[i].p[2].y);
-		p6=(a[i].p[3].y) - (a[i].p[1].y);
-		len1=sqrt((p1 * p1) + (p4 * p4));
-		len2=sqrt((p2 * p2) + (p5 * p5));
-		len3=sqrt((p3 * p3) + (p6 * p6));
-		printf("%f\n%f\n%f\n",len1,len2,len3);
-		smallest(len1,len2,len3,smallest1,smallest2);
-		res[i] = (*smallest1) * (*smallest2);
+		for(j=0;j<n;j++)
+		{
+			a[i].len[j]= ((a[i].dis[0]) * (a[i].dis[0])) + ((a[i].dis[3]) * (a[i].dis[3]));
+			a[i].len[j]= ((a[i].dis[1]) * (a[i].dis[1])) + ((a[i].dis[4]) * (a[i].dis[4]));
+			a[i].len[j]= ((a[i].dis[2]) * (a[i].dis[2])) + ((a[i].dis[5]) * (a[i].dis[5]));
+		}
 	}
-	printf("rectangles\n");
+	for(i=0;i<n;i++)
+	{
+	       	smallest(a[i].len[0],a[i].len[1],a[i].len[2],&smallest1,&smallest2);
+		res[i] = (smallest1) * (smallest2);
+	}
+	
+}
+void distance(int n,struct rectangle a[n].disp[],struct rectangle a[n].p[])
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<6;j++)
+		{
+			a[i].dis[j]=( a[i].p[3].x) - (a[i].p[1].x);
+			a[i].dis[j]= (a[i].p[3].x) - (a[i].p[2].x);
+			a[i].dis[j]= (a[i].p[3].x) - (a[i].p[1].x);
+			a[i].dis[j]=(a[i].p[2].y)  - (a[i].p[1].y);
+			a[i].dis[j]=(a[i].p[3].y) - (a[i].p[2].y);
+			a[i].dis[j]=(a[i].p[3].y) - (a[i].p[1].y);
+		}
+	}
+
 }
 void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2)
 {
@@ -49,25 +69,23 @@ void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2
 	{
 		*smallest1=len2;
 		*smallest2=len3;
-		printf("%f\n%f\n",*smallest1,*smallest2);
 	}
 	else if(len2>len1 && len2>len3)
 	{
 		*smallest1=len1;
 		*smallest2=len3;
-		printf("%f\n%f\n",*smallest1,*smallest2);
 	}
 	else 
 	{
 		*smallest1=len1;
 		*smallest2=len2;
-		printf("%f\n%f\n",*smallest1,*smallest2);
 	}
+	
 }
 
 void output(int n,float area[])
 {
-	printf("the area of the %d rectangles are:\n",n);
+	printf("the area of the %d rectangle/s are:\n",n);
 	for(int i=0;i<n;i++)
 		printf("%f\n",area[i]);
 

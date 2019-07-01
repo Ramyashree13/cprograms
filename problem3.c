@@ -13,7 +13,6 @@ void input(int n,struct str string1[n])
 		scanf("%d",&string1[i].len);
 		printf("enter the string\n");
 		scanf("%s",string1[i].s);
-		printf("%s",string1[i].s);
 	}
 }
 	
@@ -24,6 +23,8 @@ int main()
 	scanf("%d",&n);
 	struct str string1[n];
 	input(n,string1);
+	for(i=0;i<n;i++)
+		printf("%s",string1[i].s);
 	return 0;
 }
 
