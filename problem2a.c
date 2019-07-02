@@ -16,7 +16,7 @@ int gcd(int a,int b)
 }
 void input(int n,struct fraction f[n])
 {
-	printf("enter the numbers");
+	printf("enter the numbers\n");
 	for(int i=0;i<n;i++)
 		scanf("%d",&f[i].den);
 }

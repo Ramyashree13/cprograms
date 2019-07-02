@@ -18,28 +18,40 @@ void input(int n,struct str string1[n])
 }
 void compute(int n,struct str string1[n])
 {
-	int middle,begin,end;
+	int middle,begin,end,p,k;
+	char s1[5];
 	for(int i=0;i<n;i++)
 	{
 		for(int j=0;j<string1[i].len;j++)
 		{
-			middle=((j)+(j+1)) / 2;
-			begin=j;
-			end=j+1;
-			palin(begin,middle,end,string1[i].s);
+			p=j;
+			for(k=1;k<string1[i].len;k++)
+			{	
+				middle=((p)+(k)) / 2;
+			//	printf("m=%d\n",middle);
+				begin=p;	
+				end=k;
+				palin(begin,middle,end,string1[i].s);
+				printf("%s",s1);
+			}
 		}
 	}
 }
 void palin(int begin,int middle,int end,char s[])
 {
+	printf("%d\n",middle);
 	for(int i=begin;i<middle;i++)
 	{
-		if(s[begin] != s[end])
+//		printf("%s",s);
+		if(s[i] != s[end])
+		{
 			break;
+		}
 		end--;
-		if(begin==middle)
-			printf("is a palindrome\n");
 	}
+	if(begin==middle)
+		printf("string is a palindrome\n");
+	
 }
 	
 int main()
