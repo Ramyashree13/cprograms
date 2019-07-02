@@ -34,74 +34,58 @@ void input(int n,struct egyptionfraction f[n])
 			scanf("%d",&f[i].den[j]);
 		}
 	}
-}
-void compute(int n,int num1[],int num2[],struct egyptionfraction f[n])
-{
-/*	int product[10],i,up[10],g1[n],n1[10];
-	for(i=0;i<n;i++)
-	{
-		for(int j=0;j<f[i].m;j++)
-		{
-			product[i] = (product[j]) * (f[i].den[j]);
-			printf("%d\n",product[j]);
-		}
-	}
-	for(i=0;i<n;i++)
-	{
-		for(int j=0;j<f[i].m;j++)
-		{
-			n1[j]=product[i] / f[i].den[j];
-			up[i]=up[i] + n1[j];
-		}
-	}
-	for(int i=0;i<n;i++)
-	{
-		g1[i]=gcd(up[i],product[i]);
-		num1[i]= up[i]/g1[i];
-		num2[i]=product[i]/g1[i];
-	}*/
 
-	for(int i=0;i<n;i++)
+}
+void compute(int n,struct egyptionfraction f[n])
+{
+	int i,product,up,g1,n1;
+	for( i=0;i<n;i++)
 	{
+		product=1;
+		up=0;
+		n1=0;
 		for(int j=0;j<f[i].m;j++)
 		{
-			product=product * f[i].den[j];
+			product=(product) * (f[i].den[j]);
+		}
+		for(int j=0;j<f[i].m;j++)
+		{
 			n1=product/f[i].den[j];
 			up=up + n1;
-			g1=gcd(up,product);
-			f[i].s.num=up/g1;
-			f[i].s.den=product/g1;
 		}
+		g1=gcd(up,product);
+		f[i].s.num=up/g1;
+		f[i].s.den=product/g1;
 	}
+
 }
 
-void output(int n,int num1[],int num2[],struct egyptionfraction f[n])
+void output(int n,struct egyptionfraction f[n])
 {
-	int num[10];
-	//for(int i=0;i<n;i++)
-		//num[i]=1;
         for (int i=0;i<n;i++)
 	{
 		for(int j=0;j<f[i].m;j++)
 		{
-                	printf(" 1/%d+",f[i].den[j]);
+                	printf(" 1/%d",f[i].den[j]);
+			if(j==(f[i].m-1))
+				break;
+			printf("+");
 		}
-	        printf("=%d/%d",num1[i],num2[i]);
-	
+	        printf("=%d/%d\n",f[i].s.num,f[i].s.den);
+		printf("\n");
 	}
 }
 
 
 int main()
 {
-        int n,num1[10],num2[10];
+        int n;
         printf("enter the array size");
         scanf("%d",&n);
         struct egyptionfraction a[n];
         input(n,a);
-	printf("goto compute\n");
-        compute(n,num1,num2,a);
-        output(n,num1,num2,a);
+        compute(n,a);
+        output(n,a);
         return 0;
 
 }
