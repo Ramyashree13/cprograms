@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2);
+void distance(int n,struct rectangle a[n]);
 struct point
 {
 	float x;
@@ -28,12 +29,14 @@ void compute(int n,struct rectangle a[n])
 
 	int i;
 	float smallest1=0,smallest2=0;
-	for(i=0;i<n;i++)
+/*	for(i=0;i<n;i++)
 	{
+		distance(a);
 		a[i].len[0]= sqrt(((a[i].p[2].x) - (a[i].p[1].x)) * ((a[i].p[2].x) - (a[i].p[1].x)) + ((a[i].p[2].y)-(a[i].p[1].y)) * ((a[i].p[2].y) - (a[i].p[1].y)));
 		a[i].len[1]= sqrt(((a[i].p[3].x) - (a[i].p[2].x)) * ((a[i].p[3].x) - (a[i].p[2].x)) + ((a[i].p[3].y)-(a[i].p[2].y)) * ((a[i].p[3].y) - (a[i].p[2].y)));
 		a[i].len[2]= sqrt(((a[i].p[3].x) - (a[i].p[1].x)) * ((a[i].p[3].x) - (a[i].p[1].x)) + ((a[i].p[3].y)-(a[i].p[1].y)) * ((a[i].p[3].y) - (a[i].p[1].y)));
-	}
+	}*/
+	distance(n,a);
 	for(i=0;i<n;i++)
 	{
 	       	smallest(a[i].len[0],a[i].len[1],a[i].len[2],&smallest1,&smallest2);
@@ -41,6 +44,16 @@ void compute(int n,struct rectangle a[n])
 	}
 	
 }
+void distance(int n,struct rectangle a[n])
+{
+	for(int i=0;i<n;i++)
+	{	
+		a[i].len[0]= sqrt(((a[i].p[2].x) - (a[i].p[1].x)) * ((a[i].p[2].x) - (a[i].p[1].x)) + ((a[i].p[2].y)-(a[i].p[1].y)) * ((a[i].p[2].y) - (a[i].p[1].y)));
+		a[i].len[1]= sqrt(((a[i].p[3].x) - (a[i].p[2].x)) * ((a[i].p[3].x) - (a[i].p[2].x)) + ((a[i].p[3].y)-(a[i].p[2].y)) * ((a[i].p[3].y) - (a[i].p[2].y)));
+		a[i].len[2]= sqrt(((a[i].p[3].x) - (a[i].p[1].x)) * ((a[i].p[3].x) - (a[i].p[1].x)) + ((a[i].p[3].y)-(a[i].p[1].y)) * ((a[i].p[3].y) - (a[i].p[1].y)));
+	}
+}
+
 void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2)
 {
 	if(len1>len2 && len1>len3)
