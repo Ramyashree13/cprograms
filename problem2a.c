@@ -1,5 +1,5 @@
 #include<stdio.h>
-struct fraction
+struct egyptionfraction
 {
 	int num;
 	int den;
@@ -14,13 +14,13 @@ int gcd(int a,int b)
         }
         return b;
 }
-void input(int n,struct fraction f[n])
+void input(int n,struct egyptionfraction f[n])
 {
 	printf("enter the numbers\n");
 	for(int i=0;i<n;i++)
 		scanf("%d",&f[i].den);
 }
-void compute(int n,struct fraction f[n],struct fraction *sum)
+void compute(int n,struct egyptionfraction f[n],struct egyptionfraction *sum)
 {
 	int product,i,up,g1,n1;
 	for(i=0;i<n;i++)
@@ -37,7 +37,7 @@ void compute(int n,struct fraction f[n],struct fraction *sum)
 	sum->den=product/g1;
 }
 
-void output(int n,struct fraction f[n],struct fraction sum)
+void output(int n,struct egyptionfraction f[n],struct egyptionfraction sum)
 {
 	for(int i=0;i<n;i++)
 		f[i].num=1;
@@ -53,11 +53,11 @@ void output(int n,struct fraction f[n],struct fraction sum)
 int main()
 {
         int n;
-        struct fraction sum,*s;
+        struct egyptionfraction sum,*s;
 	s=&sum;
         printf("enter the array size");
         scanf("%d",&n);
-        struct fraction a[n];
+        struct egyptionfraction a[n];
         input(n,a);
         compute(n,a,s);
         output(n,a,sum);

@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<math.h>
 void smallest(float len1,float len2,float len3,float *smallest1,float *smallest2);
-void distance(int n,struct rectangle a[n]);
+int distance(int a,int b,int c,int d);
+
 struct point
 {
 	float x;
@@ -42,7 +43,7 @@ void compute(int n,struct rectangle a[n])
 	}
 	
 }
-void distances(int a,int b,int c,int d)
+int distances(int a,int b,int c,int d)
 {
 	int res;
 	res= sqrt(((c-a) * (c-a)) + ((d-b) * (d-b)));
