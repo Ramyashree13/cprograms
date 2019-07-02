@@ -1,10 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 //int *p=(int *)malloc(100 * sizeof(int));
+struct sum
+{
+	int num;
+	int den;
+};
 struct egyptionfraction
 {
 	int m;
 	int den[100];
+	struct sum s;
 };
 int gcd(int a,int b)
 {
@@ -31,7 +37,7 @@ void input(int n,struct egyptionfraction f[n])
 }
 void compute(int n,int num1[],int num2[],struct egyptionfraction f[n])
 {
-	int product[10],i,up[10],g1[n],n1[10];
+/*	int product[10],i,up[10],g1[n],n1[10];
 	for(i=0;i<n;i++)
 	{
 		for(int j=0;j<f[i].m;j++)
@@ -53,6 +59,19 @@ void compute(int n,int num1[],int num2[],struct egyptionfraction f[n])
 		g1[i]=gcd(up[i],product[i]);
 		num1[i]= up[i]/g1[i];
 		num2[i]=product[i]/g1[i];
+	}*/
+
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<f[i].m;j++)
+		{
+			product=product * f[i].den[j];
+			n1=product/f[i].den[j];
+			up=up + n1;
+			g1=gcd(up,product);
+			f[i].s.num=up/g1;
+			f[i].s.den=product/g1;
+		}
 	}
 }
 
