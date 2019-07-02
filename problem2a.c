@@ -1,8 +1,10 @@
 #include<stdio.h>
+#include<stdlib.h>
+//int *p=(int *)malloc(100 * sizeof(int));
 struct egyptionfraction
 {
-	int num;
-	int den;
+	int m;
+	int den[100];
 };
 int gcd(int a,int b)
 {
@@ -16,51 +18,71 @@ int gcd(int a,int b)
 }
 void input(int n,struct egyptionfraction f[n])
 {
-	printf("enter the numbers\n");
 	for(int i=0;i<n;i++)
-		scanf("%d",&f[i].den);
+	{
+		printf("enter the number of series of unit frcations\n");
+		scanf("%d",&f[i].m);
+		for(int j=0;j<f[i].m;j++)
+		{
+			printf("enter the %d egyption fraction\n",j+1);
+			scanf("%d",&f[i].den[j]);
+		}
+	}
 }
-void compute(int n,struct egyptionfraction f[n],struct egyptionfraction *sum)
+void compute(int n,int num1[],int num2[],struct egyptionfraction f[n])
 {
-	int product,i,up,g1,n1;
+	int product[10],i,up[10],g1[n],n1[10];
 	for(i=0;i<n;i++)
 	{
-		product = product * f[i].den;
+		for(int j=0;j<f[i].m;j++)
+		{
+			product[i] = (product[j]) * (f[i].den[j]);
+			printf("%d\n",product[j]);
+		}
 	}
 	for(i=0;i<n;i++)
 	{
-		n1=product / f[i].den;
-		up=up + n1;
+		for(int j=0;j<f[i].m;j++)
+		{
+			n1[j]=product[i] / f[i].den[j];
+			up[i]=up[i] + n1[j];
+		}
 	}
-	g1=gcd(up,product);
-	sum->num= up/g1;
-	sum->den=product/g1;
+	for(int i=0;i<n;i++)
+	{
+		g1[i]=gcd(up[i],product[i]);
+		num1[i]= up[i]/g1[i];
+		num2[i]=product[i]/g1[i];
+	}
 }
 
-void output(int n,struct egyptionfraction f[n],struct egyptionfraction sum)
+void output(int n,int num1[],int num2[],struct egyptionfraction f[n])
 {
-	for(int i=0;i<n;i++)
-		f[i].num=1;
+	int num[10];
+	//for(int i=0;i<n;i++)
+		//num[i]=1;
         for (int i=0;i<n;i++)
 	{
-                printf(" %d/%d",f[i].num,f[i].den);
-		printf("+");
+		for(int j=0;j<f[i].m;j++)
+		{
+                	printf(" 1/%d+",f[i].den[j]);
+		}
+	        printf("=%d/%d",num1[i],num2[i]);
+	
 	}
-        printf("=%d/%d",sum.num,sum.den);
 }
 
 
 int main()
 {
-        int n;
-        struct egyptionfraction sum,*s;
-	s=&sum;
+        int n,num1[10],num2[10];
         printf("enter the array size");
         scanf("%d",&n);
         struct egyptionfraction a[n];
         input(n,a);
-        compute(n,a,s);
-        output(n,a,sum);
+	printf("goto compute\n");
+        compute(n,num1,num2,a);
+        output(n,num1,num2,a);
         return 0;
 
 }
