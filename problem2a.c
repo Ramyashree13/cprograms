@@ -11,6 +11,7 @@ struct egyptionfraction
 	int *den;
 	struct sum s;
 };
+void freegyptionfraction(int n,struct egyptionfraction f[n]);
 int gcd(int a,int b)
 {
         int c;
@@ -23,8 +24,6 @@ int gcd(int a,int b)
 }
 void input(int n,struct egyptionfraction f[n])
 {
-
-	//f->den=(int *)malloc(100 *(sizeof(int)));
 	for(int i=0;i<n;i++)
 	{
 		printf("enter the number of series of unit frcations\n");
@@ -38,14 +37,18 @@ void input(int n,struct egyptionfraction f[n])
 	}
 
 }
+void freegyptionfraction(int n,struct egyptionfraction f[n])
+{
+  for(int i=0;i<n;i++)
+	  free(f[i].den);
+}
+
 void compute(int n,struct egyptionfraction f[n])
 {
 	int i,product,up,g1,n1;
 	for( i=0;i<n;i++)
 	{
-		product=1;
-		up=0;
-		n1=0;
+		product=1;up=0;n1=0;
 		for(int j=0;j<f[i].m;j++)
 		{
 			product=(product) * (f[i].den[j]);
@@ -88,6 +91,7 @@ int main()
         input(n,a);
         compute(n,a);
         output(n,a);
+	freegyptionfraction(n,a);
         return 0;
 
 }
