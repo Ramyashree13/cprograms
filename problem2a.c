@@ -1,15 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
-//int *p=(int *)malloc(100 * sizeof(int));
+/*int *den;
+den=(int *)malloc(100 *(sizeof(int)));*/
 struct sum
 {
-	int num;
-	int den;
+	int num1;
+	int num2;
 };
 struct egyptionfraction
 {
 	int m;
-	int den[100];
+	int *den;
+        den=(int *) malloc(100*(sizeof(int)));
 	struct sum s;
 };
 int gcd(int a,int b)
@@ -46,16 +48,16 @@ void compute(int n,struct egyptionfraction f[n])
 		n1=0;
 		for(int j=0;j<f[i].m;j++)
 		{
-			product=(product) * (f[i].den[j]);
+			product=(product) * (f[i].*den[j]);
 		}
 		for(int j=0;j<f[i].m;j++)
 		{
-			n1=product/f[i].den[j];
+			n1=product/f[i].*den[j];
 			up=up + n1;
 		}
 		g1=gcd(up,product);
-		f[i].s.num=up/g1;
-		f[i].s.den=product/g1;
+		f[i].s.num1=up/g1;
+		f[i].s.num2=product/g1;
 	}
 
 }
@@ -66,12 +68,12 @@ void output(int n,struct egyptionfraction f[n])
 	{
 		for(int j=0;j<f[i].m;j++)
 		{
-                	printf(" 1/%d",f[i].den[j]);
+                	printf(" 1/%d",f[i].*den[j]);
 			if(j==(f[i].m-1))
 				break;
 			printf("+");
 		}
-	        printf("=%d/%d\n",f[i].s.num,f[i].s.den);
+	        printf("=%d/%d\n",f[i].s.num1,f[i].s.num2);
 		printf("\n");
 	}
 }
