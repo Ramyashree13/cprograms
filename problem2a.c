@@ -1,7 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-/*int *den;
-den=(int *)malloc(100 *(sizeof(int)));*/
 struct sum
 {
 	int num1;
@@ -11,7 +9,6 @@ struct egyptionfraction
 {
 	int m;
 	int *den;
-        den=(int *) malloc(100*(sizeof(int)));
 	struct sum s;
 };
 int gcd(int a,int b)
@@ -26,10 +23,13 @@ int gcd(int a,int b)
 }
 void input(int n,struct egyptionfraction f[n])
 {
+
+	//f->den=(int *)malloc(100 *(sizeof(int)));
 	for(int i=0;i<n;i++)
 	{
 		printf("enter the number of series of unit frcations\n");
 		scanf("%d",&f[i].m);
+		f[i].den=(int *)malloc(100 *(sizeof(int)));
 		for(int j=0;j<f[i].m;j++)
 		{
 			printf("enter the %d egyption fraction\n",j+1);
@@ -48,11 +48,11 @@ void compute(int n,struct egyptionfraction f[n])
 		n1=0;
 		for(int j=0;j<f[i].m;j++)
 		{
-			product=(product) * (f[i].*den[j]);
+			product=(product) * (f[i].den[j]);
 		}
 		for(int j=0;j<f[i].m;j++)
 		{
-			n1=product/f[i].*den[j];
+			n1=product/(f[i].den[j]);
 			up=up + n1;
 		}
 		g1=gcd(up,product);
@@ -68,7 +68,7 @@ void output(int n,struct egyptionfraction f[n])
 	{
 		for(int j=0;j<f[i].m;j++)
 		{
-                	printf(" 1/%d",f[i].*den[j]);
+                	printf(" 1/%d",f[i].den[j]);
 			if(j==(f[i].m-1))
 				break;
 			printf("+");
