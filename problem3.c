@@ -1,84 +1,88 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+int palindrome(int begin,int end,char d[]);
 struct str
 {
 	int len;
 	char *s;
 };
-void palin(int begin,int middle,int end,char s[]);
-void input(int n,struct str string1[n])
+void input(int n,struct str string[n])
 {
-	int i,a;
-	for(i=0;i<n;i++)
-	{
-		printf("enter the length of string\n");
-		scanf("%d",&string1[i].len);
-		string1[i].s=(char *)malloc(string1[i].len * sizeof(char));
-		printf("enter the string\n");
-		scanf("%s",string1[i].s);
-	}
-
-}		
-void compute(int n,struct str string1[n])
-{
-	int middle,begin,end,p,k;
-	char s1[5];
+	
 	for(int i=0;i<n;i++)
 	{
-		for(int j=0;j<string1[i].len;j++)
+		printf("enter the lengt of string\n");
+		scanf("%d",&string[i].len);
+		string[i].s=(char *)malloc(string[i].len * sizeof(char));
+		printf("enter the string\n");
+		scanf("%s",string[i].s);
+	}
+}
+void compute(int n,struct str string[n])
+{
+	int p,begin,end,c=0;
+	char d[10];
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<string[i].len;j++)
 		{
 			p=j;
-			for(k=1;k<string1[i].len;k++)
-			{	
-				middle=((p)+(k)) / 2;
-			//	printf("m=%d\n",middle);
-				begin=p;	
+			for(int k=j+1;k<(string[i].len);k++)
+			{
+				begin=p;
 				end=k;
-				palin(begin,middle,end,string1[i].s);
-//				printf("%s",s1);
+				for( i=begin;i<=end;i++)
+				{
+					d[c]=string[i].s[i];
+					c++;
+				}
+				d[c]=NULL;
+				printf("%s",d);
+				palindrome(begin,end,d);
+				printf("%d\n",k);
 			}
 		}
 	}
 }
-void palin(int begin,int middle,int end,char s[])
+int palindrome(int begin,int end,char d[])
 {
-//	printf("%d\n",middle);
-	for(int i=begin;i<end;i++)
+	char a[10],res[20];
+	int i,n;
+	printf("substring\n");
+	/*for( i=begin;i<=end;i++)
 	{
-	//	printf("%s",s[i]);
-		if(s[i] != s[end])
-		{
-			break;
-		}
-		end--;
+		d[c]=s[i];
+		c++;
 	}
-	//if(begin==middle)
-		printf("string is a palindrome\n");
-	
+	d[c]=NULL;*/
+	n=strlen(d);
+	printf("%d\n",n);
+	for(int i=0;i<n;i++)
+	{
+		a[(n-1)-i]=d[i];
+	}
+	a[n]=NULL;
+	if(strcmp(a,d)==0)
+	{
+		if(strlen(a)>=3)
+		{
+			printf("%d\t",begin+1);
+			strcpy(res,a);
+			printf("%s\n",res);
+
+		}
+	}
+	return 0;
 }
-	
 int main()
 {
 	int n;
 	printf("enter the number of strings\n");
 	scanf("%d",&n);
-	struct str string1[n];
-	input(n,string1);
-	compute(n,string1);
+	struct str string[n];
+	input(n,string);
+	compute(n,string);
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
