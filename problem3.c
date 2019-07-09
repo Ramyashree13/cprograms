@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-int palindrome(int begin,int end,char d[],struct str string,int n,char *resstr);
+void palindrome(int begin,int end,char d[]);
 struct str
 {
 	int len;
@@ -24,7 +24,7 @@ void input(int n,struct str string[n])
 void compute(int n,struct str string[n])
 {
 	int p,begin,end,c=0,m;
-	char d[10],*resstr[10];
+	char d[10];
 	for(int i=0;i<n;i++)
 	{
 		for(int j=0;j<string[i].len;j++)
@@ -40,15 +40,15 @@ void compute(int n,struct str string[n])
 					c++;
 				}
 				d[c]=NULL;
-				palindrome(begin,end,d,string,n,resstr);
-				printf("%s",resstr);
+				palindrome(begin,end,d);
+	//			printf("%s",resstr);
 				c=0;
 				d[c]='\0';
 			}
 		}
 	}
 }
-int palindrome(int begin,int end,char d[],struct str string,int n,char *resstr)
+void palindrome(int begin,int end,char d[])
 {
 	char a[10],res[20];
 	int i,n;
@@ -69,13 +69,12 @@ int palindrome(int begin,int end,char d[],struct str string,int n,char *resstr)
 		if(strlen(a)>=3)
 		{
 			printf("%d\t",begin+1);
-			strcpy(resstr,a);
-			printf("%s\n",resstr);
-			return resstr;
+			strcpy(res,a);
+			printf("%s\n",res);
+//			return resstr;
 
 		}
 	}
-	return 0;
 }
 /*void output()
 {
